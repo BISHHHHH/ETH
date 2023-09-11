@@ -1,15 +1,64 @@
-README.md Token Coin This is a solidity program in which I am creating a token coin program. This program will take the input from the user and then give the total supply and the remaining balance as the output. The syntax used in this code is simple solidity syntax and uses the basic concept of the solidity program such as if-else condition, function creation, etc.
-
-Description This is the simple code that uses solidity programming. Solidity, a programming language for creating smart contracts for the Ethereum network, this program is a straightforward contract. The program contains two functions and some variables containing two string types, one of the uint type and the last is the mapping variable. The mapping variable is mapped from the address to the uint type. And about the functions: One is the mint function which incremented the balances and the other one is the burn function which is the opposite of the mint but the burn function also contains the if condition.
-
-Getting Start To get started with this programming type, you should first open up the solidity compiler that is Remix online IDE: https://remix.ethereum.org/. Now, when the IDE opens you first have to create a file in which you can write the code, so first click on the new file which is given at the left-hand sidebar. Name the file of your wish and save the file with an extension .sol. For example, firstcode.sol. Now, write the given code in your file
+# MyCustomToken Contract
 
 
-# CODE
 
+## Description
+
+- This Solidity smart contract, named "MyCustomToken," is a basic token contract with functions for minting and burning tokens. Below are the key components and functions explained in detail:
+
+- SPDX-License-Identifier: MIT
+
+- This line specifies the license under which the code is released. In this case, it's the MIT License, which is a permissive open-source license.
+Solidity Version
+
+- pragma solidity 0.8.18; specifies the version of the Solidity programming language that should be used to compile the contract. In this case, it's version 0.8.18.
+
+### Contract Declaration
+
+- contract MyCustomToken { declares a Solidity contract named "MyCustomToken."
+
+
+### Public Variables
+
+- string public tokenName = "21BCG1086"; declares a public string variable tokenName with the value "21BCG1086"
+
+- string public tokenSymbol = "BISHAL"; declares a public string variable tokenSymbol with the value "BISHAL."
+
+- uint public totalSupply = 0; declares a public unsigned integer variable totalSupply with an initial value of 0.
+Mapping Variable
+
+- mapping(address => uint) public balances; declares a public mapping variable balances that associates Ethereum addresses (represented as address) with unsigned 
+integer balances (uint).
+
+### Mint Function
+
+- function mintTokens(address _address, uint _amount) public { defines a function called mintTokens that allows the contract owner to create new tokens and assign them to a specified address.
+
+- address _address is the address to which the tokens will be minted.
+- uint _amount is the number of tokens to be minted.
+- This function increases the totalSupply and adds _amount tokens to the balance of _address.
+
+### Burn Function
+
+- function burnTokens(address _address, uint _amount) public { defines a function called burnTokens that allows token holders to destroy (burn) a specified number of tokens from their own balance.
+
+- address _address is the address of the token holder who wants to burn tokens.
+
+- uint _amount is the number of tokens to burn.
+
+- This function checks if the token holder has a sufficient balance to burn the specified amount of tokens, and if so, it reduces the totalSupply and deducts the burned tokens from the holder's balance.
+
+- This contract provides a basic structure for a token system, where tokens can be minted by the contract owner and burned by token holders, while maintaining a ledger of token balances for each Ethereum address. It's worth noting that this is a simplified example, and real-world token contracts often include additional features and security measures
+
+## Getting Started
+
+## CODE
+
+//SPDX-License-Identifier: MIT
 pragma solidity 0.8.18;
 
-contract MyCustomToken {
+
+contract Sachin {
 
     // public variables here
     string public tokenName = "21BCG1086";
@@ -32,25 +81,100 @@ contract MyCustomToken {
         balances[_address] -= _amount;
     }
 }
-# EXPLAINATION:
-The provided Solidity smart contract represents a custom token named "MyCustomToken" and is written using Solidity version 0.8.18. The contract includes functionality for minting and burning tokens, and it utilizes a mapping to keep track of token balances for different Ethereum addresses.
 
-The contract starts with a pragma directive specifying the Solidity version used for compiling the contract. This ensures that the contract is compatible with the specified version.
 
-Next, the contract defines public variables to store information about the custom token. These variables are publicly accessible, allowing anyone to query them. The `tokenName` variable is a string that represents the name of the custom token, set to "21BCG1086." The `tokenSymbol` variable is also a string and represents the symbol of the token, set to "BISHAL." The `totalSupply` variable is an unsigned integer that represents the total supply of the custom token, and it is initialized to 0. This variable will be updated whenever new tokens are minted or burned.
+## Installing 
 
-The contract utilizes a mapping called `balances` to keep track of the token balances of different Ethereum addresses. The mapping associates Ethereum addresses (of type `address`) with their corresponding token balances (of type `uint`). Since the mapping is declared as public, anyone can query the balance of any address using this mapping.
+- To instal the provided Solidity code on Remix IDE with user inputs, you can follow these steps:
 
-The contract implements two main functions for token management:
+- Open Remix IDE: Go to the Remix IDE website (https://remix.ethereum.org/).
 
-1. **Mint Function (`mintTokens`)**:
-   The `mintTokens` function allows anyone to mint (create) new tokens and assign them to a specified Ethereum address. It takes two parameters: `_address`, which represents the Ethereum address to which the newly minted tokens will be assigned, and `_amount`, which is the number of tokens to be minted. When this function is called, it increments the `totalSupply` by the `_amount`, effectively creating new tokens. It also increases the balance of the `_address` by the `_amount`, reflecting the newly minted tokens in that account. This function enables the contract to create and distribute new tokens, expanding the total supply.
+- Create a New File: On the Remix IDE interface, create a new Solidity file and paste the provided code into it. You can click on the "+" button in the file explorer on the left side and give the file a name, such as Eth.sol."
 
-2. **Burn Function (`burnTokens`)**:
-   The `burnTokens` function allows anyone to burn (destroy) tokens from a specified Ethereum address. It takes two parameters: `_address`, which represents the Ethereum address from which the tokens will be burned, and `_amount`, which is the number of tokens to be burned. Before burning tokens, the function checks if the balance of the `_address` is greater than or equal to the `_amount` using a `require` statement. If the condition is not met, the transaction is reverted with an error message, preventing burning more tokens than the available balance. If the balance check passes, the `burnTokens` function decreases the `totalSupply` by the `_amount`, effectively reducing the total supply of tokens. Additionally, it decreases the balance of the `_address` by the `_amount`, reflecting the burned tokens. This function provides a mechanism for reducing the token supply and removing tokens from circulation.
 
-It's important to note that this is a basic implementation of a custom token contract and lacks several essential features such as transfer functions, event logging, access control mechanisms, and more. In a real-world scenario, additional functionalities and security measures would be necessary to ensure the token operates securely and effectively within the Ethereum ecosystem.
+## Executing program
 
-In practice, custom token contracts are widely used to create various assets and utilities on the Ethereum blockchain. Tokens can represent digital assets, loyalty points, governance tokens, or serve as an integral part of decentralized applications (DApps). Developers often build more complex token contracts with additional features like time-based locking, token vesting, and more advanced access controls to meet the specific requirements of their projects.
+Compile the Contract:
 
-When deploying a smart contract like this on the Ethereum blockchain or any other blockchain platform, security is of utmost importance. Vulnerabilities in smart contracts can lead to serious consequences, including loss of funds or assets. As a best practice, smart contract developers should conduct thorough security audits and testing to ensure the robustness and correctness of their code. Additionally, following standard token standards such as ERC-20 (Ethereum Request for Comments 20) or other well-established token standards can enhance interoperability and usability within the broader blockchain ecosystem. Overall, smart contracts and custom tokens have significant potential to revolutionize various industries by enabling secure, transparent, and efficient digital asset management and value exchange on the blockchain.
+- In the Remix IDE, you should see a "Solidity Compiler" tab on the left sidebar.
+- Select the version of Solidity (0.8.18) from the dropdown menu to match the pragma statement in your code.
+- Click the "Compile Eth.sol" button to compile the contract. Ensure that there are no compilation errors.
+
+  
+Deploy the Contract:
+
+- After successful compilation, go to the "Deploy & Run Transactions" tab in Remix IDE.
+
+
+
+## Deploy
+
+Deploy the Contract:
+
+- Below the contract code, you should see a section to deploy the contract.
+- Click on the "Deploy" button.
+
+Interact with the Contract:
+
+- After deployment, you can interact with the contract using the provided functions: mintTokens and burnTokens.
+- Enter the Ethereum address and the amount of tokens you want to mint or burn in the respective input fields.
+- Click the "Transact" button to execute the function.
+
+
+Check Contract State:
+
+You can also check the state of the contract, including the totalSupply and balances of different addresses, by calling the public variables and functions. These will be read-only transactions and do not require gas
+
+# User Input
+
+### Input Values for Minting:
+
+
+- In the "mintTokens" section, you will see two input fields:
+- _address: Enter the Ethereum address to which you want to mint tokens. This should be a valid Ethereum address 
+- _amount: Enter the number of tokens you want to mint.
+
+
+### Execute the Mint Function:
+
+- After entering the values,
+- click the "Transact" button to execute the minting function. 
+
+
+### Check Token Balance:
+
+- To check the updated balance of the address you minted tokens to, you can call the balances mapping using the address as the key. You can do this by entering the address in the "balances" section under your contract and clicking the "Read" button.
+
+
+### Burn Tokens:
+
+- Similarly, you can burn tokens by calling the burnTokens function.
+- In the "Deployed Contracts" section, find the "burnTokens" function in the list of functions under your contract.
+
+ ### Input Values for Burning:
+
+- In the "burnTokens" section, you will see two input fields:
+- _address: Enter the Ethereum address that holds the tokens you want to burn.
+- _amount: Enter the number of tokens you want to burn.
+
+
+### Execute the Burn Function:
+
+- After entering the values, click the "Transact" button to execute the burning function. Ensure that you have enough tokens in the specified address to burn; otherwise, it will fail.
+
+
+### Check Token Balance After Burning:
+
+- You can also check the updated balance of the address after burning tokens by calling the balances mapping as mentioned in step 5.
+
+
+## Authors
+
+- BISHAL PATRA
+
+- 21BCG1086
+
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE.md file for details
